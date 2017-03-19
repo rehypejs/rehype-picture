@@ -1,5 +1,7 @@
 # rehype-picture [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wooorm/rehype-picture.svg)](https://greenkeeper.io/)
+
 Wrap images in pictures with rehype.
 
 ## Installation
