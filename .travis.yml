@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+- '4.0'
+- '7.0'
+after_script: bash <(curl -s https://codecov.io/bash)
+deploy:
+  - provider: npm
+    email: tituswormer@gmail.com
+    api_key:
+      secure: ZoQaR7+Z1aGN7s/R3/ASyfnzsv6z4oKxOhzefMa7oc33JQPU2g0uNoJjyhDvhkjPFWCD4n19f1TGNJw6zGSqTQV4qaeqZ33Jq1zs/FrOa5HGMf0d/nntPNvOCtbK3DXR3A1VR+DV9s9MdMb9t19adb+uTcaPhS6beYaGRU6JmXi8SK5S7acmKMBpQUQVP6h+6vR0qGeiLMQenaXbne0iCHTUn5+TG3FpFBgxM1dHDif6fOugJlGLOJP58VxCL33QaWQO7HS/7nZZNGTQnH5arKcr6KF81odRgzZydYgolzJji8ZGjC9DWuvSoUY8EWD2pWQBnFLYkJon5kIkbzjmZgFYvpTujf+NPWamWToS6g6LLdBuZsMH5IGtVf9lS6RDg3apY3tVwbURWbtlwZsPLdeLe80WQnWzCPqf7GLsQCOpHPSaXYnIKT4jEl7rr1SAn1zscYs4MUQMkoPSM2vySVN2orcuK6W5Okrisc9uPBtfybzSCj3qfm47PdAyrHWblXwrg+vlWzsJDh0fm3XQqQbqMbOJkxQYG0sy3IMW7QXf+/r6iPeN23i3d75oaiNcW9Qq8yGSF8PrCRzpwv4Ur8UsQHC+rel6e8qkISCtq54v+3ibavbyg+Lflw2jny3MpJzyE0rQIj46qgeI0pBe5f+Ga+A58Zz3UVrynhikO4g=
+    on:
+      tags: true
+      node: '4.0'
+  - provider: releases
+    api_key:
+      secure: 6xaBpxuu8ukYNhCvQ4EyFbdhB0V/6o66OcYy+s49Ez8rzwn0AyfY2tuk4TUgA5O9UFGecEQJvv66t2VVYGEV2XPDjlrUd52yHB6mlMnah4m4MWCnlcp4dLb1jN01S7FdROP2IOfctRAw3KojNQd35DCbFqhzm+sWgJCw9R3xhmuYrN15RLWLVKXaVRSg5MDGB0RDhC/uKI8NYQjFv5JvNb/MGQMq3RPCjYjvzzwvCIEiqtQU3y94dUWjUYbCNzuDPDhbul2ZYS2SeRaMgGgHQDkZt1mFQrzH+RbAygJCI0w3YubHme1l8dMnZssREDvDbI1djCeam8l1hQy5dG7zOB/nKyTbahDPPX6jqFsWhbVwZhKD5kM6NmBUfrMxNuKTzEZC2hYefWrOMug6NLay5/KEY9CiKnzzwQy7lk8uZOoI4l25S5HKgGq77z8L8vqDisNDZtSJBHl3UsxY5c+/08ifDBm5LOoHFt3kCrMkmW+RCDG5xBUGk0sJbtxh49dcKZ087RTB7guEcmvgAOEcB6iGi9WOuBY6VbLJJt6QDHC+jX2etk7ifKNkQRUbJ0gSOHpNpSEnyHoh7p+L3eYk7iXud/LzSkoQBpXj5iRRQSZnGf5SPLKcmPqHLW1I9biMq6kIJCndRho+5F5i9nbULtrq424rWh/4274c/lBQIcA=
+    file:
+      - "rehype-picture.js"
+      - "rehype-picture.min.js"
+    on:
+      tags: true
+      node: '7.0'
