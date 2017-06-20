@@ -1,6 +1,6 @@
 {
   "name": "rehype-picture",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wrap images in pictures with rehype",
   "license": "MIT",
   "keywords": [
