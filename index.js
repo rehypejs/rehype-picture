@@ -1,13 +1,14 @@
 'use strict';
 
 var path = require('path');
-var has = require('has');
 var visit = require('unist-util-visit');
 var is = require('hast-util-is-element');
 var replaceExt = require('replace-ext');
 var h = require('hastscript');
 
 module.exports = picture;
+
+var own = {}.hasOwnProperty;
 
 function picture(options) {
   var settings = options || {};
@@ -29,7 +30,7 @@ function picture(options) {
 
     extension = path.extname(src).slice(1);
 
-    if (!has(settings, extension)) {
+    if (!own.call(settings, extension)) {
       return;
     }
 

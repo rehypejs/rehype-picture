@@ -20,7 +20,6 @@
     "index.js"
   ],
   "dependencies": {
-    "has": "^1.0.1",
     "hast-util-is-element": "^1.0.0",
     "hastscript": "^3.0.1",
     "replace-ext": "^1.0.0",
