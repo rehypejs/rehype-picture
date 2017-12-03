@@ -66,13 +66,13 @@ found are wrapped in `<picture>` elements.  The values at those keys are the
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/rehype-picture.svg
+[travis-badge]: https://img.shields.io/travis/rehypejs/rehype-picture.svg
 
-[travis]: https://travis-ci.org/wooorm/rehype-picture
+[travis]: https://travis-ci.org/rehypejs/rehype-picture
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/rehype-picture.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/rehypejs/rehype-picture.svg
 
-[codecov]: https://codecov.io/github/wooorm/rehype-picture
+[codecov]: https://codecov.io/github/rehypejs/rehype-picture
 
 [npm]: https://docs.npmjs.com/cli/install
 

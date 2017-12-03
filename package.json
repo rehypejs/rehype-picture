@@ -10,8 +10,8 @@
     "img",
     "picture"
   ],
-  "repository": "https://github.com/wooorm/rehype-picture",
-  "bugs": "https://github.com/wooorm/rehype-picture/issues",
+  "repository": "rehypejs/rehype-picture",
+  "bugs": "https://github.com/rehypejs/rehype-picture/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
