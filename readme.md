@@ -60,6 +60,13 @@ So, if the following options are given:
 found are wrapped in `<picture>` elements.  The values at those keys are the
 `<source>` elements inserted in the picture.
 
+## Contribute
+
+See [`contribute.md` in `rehypejs/rehype`][contribute] for ways to get started.
+
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
@@ -79,3 +86,7 @@ found are wrapped in `<picture>` elements.  The values at those keys are the
 [license]: LICENSE
 
 [author]: http://wooorm.com
+
+[contribute]: https://github.com/rehypejs/rehype/blob/master/contributing.md
+
+[coc]: https://github.com/rehypejs/rehype/blob/master/code-of-conduct.md
