@@ -4,7 +4,6 @@ var path = require('path')
 var visit = require('unist-util-visit')
 var is = require('hast-util-is-element')
 var replaceExt = require('replace-ext')
-var h = require('hastscript')
 
 module.exports = picture
 
@@ -35,7 +34,12 @@ function picture(options) {
     }
 
     map = settings[extension]
-    parent.children[index] = h('picture', sources(src, map).concat(node))
+    parent.children[index] = {
+      type: 'element',
+      tagName: 'picture',
+      properties: {},
+      children: sources(src, map).concat(node)
+    }
   }
 
   function sources(src, map) {
@@ -43,9 +47,12 @@ function picture(options) {
     var key
 
     for (key in map) {
-      nodes.push(
-        h('source', {srcSet: replaceExt(src, '.' + key), type: map[key]})
-      )
+      nodes.push({
+        type: 'element',
+        tagName: 'source',
+        properties: {srcSet: replaceExt(src, '.' + key), type: map[key]},
+        children: []
+      })
     }
 
     return nodes

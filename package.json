@@ -21,7 +21,6 @@
   ],
   "dependencies": {
     "hast-util-is-element": "^1.0.0",
-    "hastscript": "^3.0.1",
     "replace-ext": "^1.0.0",
     "unist-util-visit": "^1.1.1"
   },
