@@ -13,10 +13,11 @@ npm install rehype-picture
 ## Usage
 
 ```js
-var unified = require('unified');
-var parse = require('rehype-parse');
-var stringify = require('rehype-stringify');
-var picture = require('rehype-picture');
+var unified = require('unified')
+var report = require('vfile-reporter')
+var parse = require('rehype-parse')
+var stringify = require('rehype-stringify')
+var picture = require('rehype-picture')
 
 unified()
   .use(parse, {fragment: true})
@@ -25,16 +26,16 @@ unified()
     png: {svg: 'image/svg+xml'}
   })
   .use(stringify)
-  .process('<img src="cat.jpg">\n<img src="logo.png">', function (err, file) {
-    console.error(err);
-    console.log(String(file));
-  });
+  .process('<img src="cat.jpg">\n<img src="logo.png">', function(err, file) {
+    console.error(report(err || file))
+    console.log(String(file))
+  })
 ```
 
 Yields:
 
 ```html
-null
+no issues found
 <picture><source srcset="cat.webp" type="image/webp"><img src="cat.jpg"></picture>
 <picture><source srcset="logo.svg" type="image/svg+xml"><img src="logo.png"></picture>
 ```
