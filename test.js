@@ -4,7 +4,7 @@ var test = require('tape');
 var unified = require('unified');
 var parse = require('rehype-parse');
 var stringify = require('rehype-stringify');
-var picture = require('./');
+var picture = require('.');
 
 test('rehype-picture', function (t) {
   unified()
