@@ -87,7 +87,7 @@ repository, organisation, or community you agree to abide by its terms.
 
 [license]: license
 
-[author]: http://wooorm.com
+[author]: https://wooorm.com
 
 [contribute]: https://github.com/rehypejs/rehype/blob/master/contributing.md
 
