@@ -3,19 +3,22 @@
 [![Build][build-badge]][build]
 [![Coverage][coverage-badge]][coverage]
 [![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-Wrap images in pictures with rehype.
+[**rehype**][rehype] plugin to wrap images in pictures.
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install rehype-picture
 ```
 
-## Usage
+## Use
 
 ```js
 var unified = require('unified')
@@ -49,9 +52,10 @@ no issues found
 
 ### `rehype().use(picture[, options])`
 
-Options is an object mapping extensions (without dot) to search for on
-`<img>` elements to “sources”.  Sources are objects mapping replacement
-extensions (without dot) to mime-types.
+Options is an object mapping extensions (without dot, `.`) to search for on
+`<img>` elements to “sources”.
+Sources are objects mapping replacement extensions (without dot, `.`) to
+mime-types.
 
 So, if the following options are given:
 
@@ -62,17 +66,19 @@ So, if the following options are given:
 }
 ```
 
-...that means `jpg` and `png` are the searched for extensions, which when
-found are wrapped in `<picture>` elements.  The values at those keys are the
-`<source>` elements inserted in the picture.
+…that means `jpg` and `png` are the searched for extensions, which when found
+are wrapped in `<picture>` elements.
+The values at those keys are the `<source>` elements inserted in the picture.
 
 ## Contribute
 
-See [`contributing.md` in `rehypejs/rehype`][contribute] for ways to get
-started.
+See [`contributing.md`][contributing] in [`rehypejs/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -92,16 +98,32 @@ repository, organisation, or community you agree to abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/rehype-picture
 
+[size-badge]: https://img.shields.io/bundlephobia/minzip/rehype-picture.svg
+
+[size]: https://bundlephobia.com/result?p=rehype-picture
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
+
 [chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
 
 [chat]: https://spectrum.chat/unified/rehype
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[health]: https://github.com/rehypejs/.github
+
+[contributing]: https://github.com/rehypejs/.github/blob/master/contributing.md
+
+[support]: https://github.com/rehypejs/.github/blob/master/support.md
+
+[coc]: https://github.com/rehypejs/.github/blob/master/code-of-conduct.md
+
 [license]: license
 
 [author]: https://wooorm.com
 
-[contribute]: https://github.com/rehypejs/rehype/blob/master/contributing.md
-
-[coc]: https://github.com/rehypejs/rehype/blob/master/code-of-conduct.md
+[rehype]: https://github.com/rehypejs/rehype
