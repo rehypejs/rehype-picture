@@ -38,7 +38,7 @@
     "xo": "^0.24.0"
   },
   "scripts": {
-    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
+    "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
     "build-bundle": "browserify . -s rehypePicture > rehype-picture.js",
     "build-mangle": "browserify . -s rehypePicture -p tinyify > rehype-picture.min.js",
     "build": "npm run build-bundle && npm run build-mangle",
