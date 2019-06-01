@@ -1,9 +1,10 @@
 {
   "name": "rehype-picture",
   "version": "1.0.3",
-  "description": "Wrap images in pictures with rehype",
+  "description": "rehype plugin to wrap images in pictures",
   "license": "MIT",
   "keywords": [
+    "unified",
     "rehype",
     "hast",
     "html",
