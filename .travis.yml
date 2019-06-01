@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-- lts/boron
-- node
+  - lts/dubnium
+  - node
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: releases
@@ -9,7 +9,7 @@ deploy:
   api_key:
     secure: 5PCR51lseKCViANfU/VwcgvcO3Q+BvekoPpgAZEDzPYY5iMBbqs2FxWXkNZ1cmnEMgNwHrzuVgd6wVZIGUqi7a2FYWrKoZPndB1swId9ZD4Mlj8TsCMDzGa7PYNBilvQHyMsuxaktYCk3mOVn1bKEXdz4R4mC5mtaSqMHUC5Ys74osZsm9NhdTC5vzPTE+0CRTMxtkb7aI151M52ERajrNpahTNNg75FsyvSTSy5693RYWnVf5/1/XAhqQ3jCHVBAPCRZfxj2IrML6vp0b0ADvbm5Yu+5PeWSASaZs/A95EtZI9TZHU944TN0DW7f1BaPgeqHLe+Q/89xXoPQsumwHPx4Gw9cbD4oaqSflTD3GSWb+3CIRrX5pu4diOFxZkYZDiXkcIV/bja+2eoii5ex2xMfDOWnaqAJhDcRn7wAamAKeCIw12SPX6SFq0e0L43akTQUFsZsxDZq1pboV6viMf1bGsqKEQwz8/6V0EO9cjJH4hOJKnThJCtiTLF4SQDhshHOoNoigKEHMEh3GIE/hLg7pp0BPZKH2zIkFUzV0wY0Y70Q7hWjbx7rjyxdio0gRo7QBFr66vpJoMC4ne+4Z2TVTE4SICaPOTKO0f6FCoTUlsMl5BYScv8RjaDT4XXahi+SEo5MjL1cLi40hsFNFqWddJuXLz4oXVN7LL7Lu0=
   file:
-    - "rehype-picture.js"
-    - "rehype-picture.min.js"
+    - 'rehype-picture.js'
+    - 'rehype-picture.min.js'
   on:
     tags: true
