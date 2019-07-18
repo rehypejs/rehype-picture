@@ -70,6 +70,13 @@ So, if the following options are given:
 are wrapped in `<picture>` elements.
 The values at those keys are the `<source>` elements inserted in the picture.
 
+## Security
+
+Although this plugin should be safe to use, always be careful with user input.
+For example, it’s possible to hide JavaScript inside images (such as GIFs,
+WebPs, and SVGs).
+User provided images open you up to a [cross-site scripting (XSS)][xss] attack.
+
 ## Contribute
 
 See [`contributing.md`][contributing] in [`rehypejs/.github`][health] for ways
@@ -127,3 +134,5 @@ abide by its terms.
 [author]: https://wooorm.com
 
 [rehype]: https://github.com/rehypejs/rehype
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
