@@ -6,9 +6,12 @@
   "keywords": [
     "unified",
     "rehype",
+    "rehype-plugin",
     "hast",
     "html",
     "img",
+    "image",
+    "figure",
     "picture"
   ],
   "repository": "rehypejs/rehype-picture",
