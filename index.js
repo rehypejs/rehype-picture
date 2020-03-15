@@ -21,7 +21,6 @@ function picture(options) {
   function visitor(node, index, parent) {
     var src = node.properties.src
     var extension
-    var map
 
     if (!parent || !is(node, 'img') || !src) {
       return
@@ -33,12 +32,11 @@ function picture(options) {
       return
     }
 
-    map = settings[extension]
     parent.children[index] = {
       type: 'element',
       tagName: 'picture',
       properties: {},
-      children: sources(src, map).concat(node)
+      children: sources(src, settings[extension]).concat(node)
     }
   }
 
