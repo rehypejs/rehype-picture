@@ -6,12 +6,12 @@ var parse = require('rehype-parse')
 var stringify = require('rehype-stringify')
 var picture = require('.')
 
-test('rehype-picture', function(t) {
+test('rehype-picture', function (t) {
   unified()
     .use(parse, {fragment: true})
     .use(picture)
     .use(stringify)
-    .process('<img src="cat.png">', function(err, file) {
+    .process('<img src="cat.png">', function (err, file) {
       t.deepEqual(
         [err, String(file)],
         [null, '<img src="cat.png">'],
@@ -23,7 +23,7 @@ test('rehype-picture', function(t) {
     .use(parse, {fragment: true})
     .use(picture, {})
     .use(stringify)
-    .process('<img>', function(err, file) {
+    .process('<img>', function (err, file) {
       t.deepEqual(
         [err, String(file)],
         [null, '<img>'],
@@ -35,7 +35,7 @@ test('rehype-picture', function(t) {
     .use(parse, {fragment: true})
     .use(picture, {jpg: {}})
     .use(stringify)
-    .process('<img src="cat.jpg">', function(err, file) {
+    .process('<img src="cat.jpg">', function (err, file) {
       t.deepEqual(
         [err, String(file)],
         [null, '<picture><img src="cat.jpg"></picture>'],
@@ -47,7 +47,7 @@ test('rehype-picture', function(t) {
     .use(parse, {fragment: true})
     .use(picture, {jpg: {webp: 'image/webp'}})
     .use(stringify)
-    .process('<img src="cat.jpg">', function(err, file) {
+    .process('<img src="cat.jpg">', function (err, file) {
       t.deepEqual(
         [err, String(file)],
         [
