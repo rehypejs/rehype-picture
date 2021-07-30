@@ -1,15 +1,11 @@
-'use strict'
-
-var path = require('path')
-var visit = require('unist-util-visit')
-var is = require('hast-util-is-element')
-var replaceExt = require('replace-ext')
-
-module.exports = picture
+import path from 'path'
+import visit from 'unist-util-visit'
+import is from 'hast-util-is-element'
+import replaceExt from 'replace-ext'
 
 var own = {}.hasOwnProperty
 
-function picture(options) {
+export default function rehypePicture(options) {
   var settings = options || {}
 
   return transformer

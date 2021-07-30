@@ -1,15 +1,13 @@
-'use strict'
+import test from 'tape'
+import unified from 'unified'
+import parse from 'rehype-parse'
+import stringify from 'rehype-stringify'
+import rehypePicture from './index.js'
 
-var test = require('tape')
-var unified = require('unified')
-var parse = require('rehype-parse')
-var stringify = require('rehype-stringify')
-var picture = require('.')
-
-test('rehype-picture', function (t) {
+test('rehypePicture', function (t) {
   unified()
     .use(parse, {fragment: true})
-    .use(picture)
+    .use(rehypePicture)
     .use(stringify)
     .process('<img src="cat.png">', function (err, file) {
       t.deepEqual(
@@ -21,7 +19,7 @@ test('rehype-picture', function (t) {
 
   unified()
     .use(parse, {fragment: true})
-    .use(picture, {})
+    .use(rehypePicture, {})
     .use(stringify)
     .process('<img>', function (err, file) {
       t.deepEqual(
@@ -33,7 +31,7 @@ test('rehype-picture', function (t) {
 
   unified()
     .use(parse, {fragment: true})
-    .use(picture, {jpg: {}})
+    .use(rehypePicture, {jpg: {}})
     .use(stringify)
     .process('<img src="cat.jpg">', function (err, file) {
       t.deepEqual(
@@ -45,7 +43,7 @@ test('rehype-picture', function (t) {
 
   unified()
     .use(parse, {fragment: true})
-    .use(picture, {jpg: {webp: 'image/webp'}})
+    .use(rehypePicture, {jpg: {webp: 'image/webp'}})
     .use(stringify)
     .process('<img src="cat.jpg">', function (err, file) {
       t.deepEqual(
