@@ -1,5 +1,2 @@
 coverage/
-rehype-picture.js
-rehype-picture.min.js
-*.json
 *.md
