@@ -12,6 +12,9 @@
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -21,21 +24,22 @@ npm install rehype-picture
 ## Use
 
 ```js
-var unified = require('unified')
-var report = require('vfile-reporter')
-var parse = require('rehype-parse')
-var stringify = require('rehype-stringify')
-var picture = require('rehype-picture')
+import {unified} from 'unified'
+import {reporter} from 'vfile-reporter'
+import rehypeParse from 'rehype-parse'
+import rehypePicture from 'rehype-picture'
+import rehypeStringify from 'rehype-stringify'
 
 unified()
-  .use(parse, {fragment: true})
-  .use(picture, {
+  .use(rehypeParse, {fragment: true})
+  .use(rehypePicture, {
     jpg: {webp: 'image/webp'},
     png: {svg: 'image/svg+xml'}
   })
-  .use(stringify)
-  .process('<img src="cat.jpg">\n<img src="logo.png">', function(err, file) {
-    console.error(report(err || file))
+  .use(rehypeStringify)
+  .process('<img src="cat.jpg">\n<img src="logo.png">')
+  .then((file) => {
+    console.error(reporter(file))
     console.log(String(file))
   })
 ```
@@ -50,7 +54,10 @@ no issues found
 
 ## API
 
-### `rehype().use(picture[, options])`
+This package exports no identifiers.
+The default export is `rehypePicture`.
+
+### `unified().use(rehypePicture[, options])`
 
 Options is an object mapping extensions (without dot, `.`) to search for on
 `<img>` elements to “sources”.
