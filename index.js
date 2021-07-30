@@ -1,6 +1,6 @@
 import path from 'path'
-import visit from 'unist-util-visit'
-import is from 'hast-util-is-element'
+import {visit} from 'unist-util-visit'
+import {isElement} from 'hast-util-is-element'
 import replaceExt from 'replace-ext'
 
 const own = {}.hasOwnProperty
@@ -17,7 +17,7 @@ export default function rehypePicture(options) {
   function visitor(node, index, parent) {
     const src = node.properties.src
 
-    if (!parent || !is(node, 'img') || !src) {
+    if (!parent || !isElement(node, 'img') || !src) {
       return
     }
 
