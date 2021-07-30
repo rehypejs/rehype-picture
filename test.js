@@ -1,14 +1,14 @@
 import test from 'tape'
-import unified from 'unified'
-import parse from 'rehype-parse'
-import stringify from 'rehype-stringify'
+import {unified} from 'unified'
+import rehypeParse from 'rehype-parse'
+import rehypeStringify from 'rehype-stringify'
 import rehypePicture from './index.js'
 
 test('rehypePicture', (t) => {
   unified()
-    .use(parse, {fragment: true})
+    .use(rehypeParse, {fragment: true})
     .use(rehypePicture)
-    .use(stringify)
+    .use(rehypeStringify)
     .process('<img src="cat.png">', (error, file) => {
       t.deepEqual(
         [error, String(file)],
@@ -18,9 +18,9 @@ test('rehypePicture', (t) => {
     })
 
   unified()
-    .use(parse, {fragment: true})
+    .use(rehypeParse, {fragment: true})
     .use(rehypePicture, {})
-    .use(stringify)
+    .use(rehypeStringify)
     .process('<img>', (error, file) => {
       t.deepEqual(
         [error, String(file)],
@@ -30,9 +30,9 @@ test('rehypePicture', (t) => {
     })
 
   unified()
-    .use(parse, {fragment: true})
+    .use(rehypeParse, {fragment: true})
     .use(rehypePicture, {jpg: {}})
-    .use(stringify)
+    .use(rehypeStringify)
     .process('<img src="cat.jpg">', (error, file) => {
       t.deepEqual(
         [error, String(file)],
@@ -42,9 +42,9 @@ test('rehypePicture', (t) => {
     })
 
   unified()
-    .use(parse, {fragment: true})
+    .use(rehypeParse, {fragment: true})
     .use(rehypePicture, {jpg: {webp: 'image/webp'}})
-    .use(stringify)
+    .use(rehypeStringify)
     .process('<img src="cat.jpg">', (error, file) => {
       t.deepEqual(
         [error, String(file)],
