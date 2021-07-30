@@ -3,10 +3,10 @@ import visit from 'unist-util-visit'
 import is from 'hast-util-is-element'
 import replaceExt from 'replace-ext'
 
-var own = {}.hasOwnProperty
+const own = {}.hasOwnProperty
 
 export default function rehypePicture(options) {
-  var settings = options || {}
+  const settings = options || {}
 
   return transformer
 
@@ -15,14 +15,13 @@ export default function rehypePicture(options) {
   }
 
   function visitor(node, index, parent) {
-    var src = node.properties.src
-    var extension
+    const src = node.properties.src
 
     if (!parent || !is(node, 'img') || !src) {
       return
     }
 
-    extension = path.extname(src).slice(1)
+    const extension = path.extname(src).slice(1)
 
     if (!own.call(settings, extension)) {
       return
@@ -37,16 +36,18 @@ export default function rehypePicture(options) {
   }
 
   function sources(src, map) {
-    var nodes = []
-    var key
+    const nodes = []
+    let key
 
     for (key in map) {
-      nodes.push({
-        type: 'element',
-        tagName: 'source',
-        properties: {srcSet: [replaceExt(src, '.' + key)], type: map[key]},
-        children: []
-      })
+      if (own.call(map, key)) {
+        nodes.push({
+          type: 'element',
+          tagName: 'source',
+          properties: {srcSet: [replaceExt(src, '.' + key)], type: map[key]},
+          children: []
+        })
+      }
     }
 
     return nodes
