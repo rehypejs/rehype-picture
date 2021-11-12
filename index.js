@@ -6,7 +6,7 @@
  * @typedef {Record<string, Sources>} Options
  */
 
-import path from 'path'
+import path from 'node:path'
 import {visit} from 'unist-util-visit'
 import {isElement} from 'hast-util-is-element'
 import replaceExt from 'replace-ext'
