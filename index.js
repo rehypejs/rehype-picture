@@ -49,7 +49,7 @@ export default function rehypePicture(options) {
           nodes.push({
             type: 'element',
             tagName: 'source',
-            properties: {srcSet: [replaceExt(src, '.' + key)], type: map[key]},
+            properties: {srcSet: replaceExt(src, '.' + key), type: map[key]},
             children: []
           })
         }
