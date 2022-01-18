@@ -14,7 +14,7 @@ import replaceExt from 'replace-ext'
 const own = {}.hasOwnProperty
 
 /**
- * @type {import('unified').Plugin<[Options] | void[], Root>}
+ * @type {import('unified').Plugin<[Options?] | Array<void>, Root>}
  */
 export default function rehypePicture(options) {
   const settings = options || {}
