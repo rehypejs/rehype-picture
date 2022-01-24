@@ -8,46 +8,91 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**rehype**][rehype] plugin to wrap images in pictures.
+**[rehype][]** plugin to wrap images in pictures.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`unified().use(rehypePicture[, options])`](#unifieduserehypepicture-options)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package is a [unified][] ([rehype][]) plugin to change images (`<img>`)
+into pictures (`<picture>`).
+This lets you use a single image source in your content which is then
+automatically turned into a picture with several sources.
+
+**unified** is a project that transforms content with abstract syntax trees
+(ASTs).
+**rehype** adds support for HTML to unified.
+**hast** is the HTML AST that rehype uses.
+This is a rehype plugin that changes images in the tree.
+
+## When should I use this?
+
+This plugin is useful when you have the same images in different formats.
+For example, when you have a build step that turns JPGs into WebPs, you can use
+this plugin to generate the markup for both.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
 
 ```sh
 npm install rehype-picture
+```
+
+In Deno with [Skypack][]:
+
+```js
+import rehypePicture from 'https://cdn.skypack.dev/rehype-picture@4?dts'
+```
+
+In browsers with [Skypack][]:
+
+```html
+<script type="module">
+  import rehypePicture from 'https://cdn.skypack.dev/rehype-picture@4?min'
+</script>
 ```
 
 ## Use
 
 ```js
 import {unified} from 'unified'
-import {reporter} from 'vfile-reporter'
 import rehypeParse from 'rehype-parse'
 import rehypePicture from 'rehype-picture'
 import rehypeStringify from 'rehype-stringify'
 
-unified()
-  .use(rehypeParse, {fragment: true})
-  .use(rehypePicture, {
-    jpg: {webp: 'image/webp'},
-    png: {svg: 'image/svg+xml'}
-  })
-  .use(rehypeStringify)
-  .process('<img src="cat.jpg">\n<img src="logo.png">')
-  .then((file) => {
-    console.error(reporter(file))
-    console.log(String(file))
-  })
+main()
+
+async function main() {
+  const file = await unified()
+    .use(rehypeParse, {fragment: true})
+    .use(rehypePicture, {
+      jpg: {webp: 'image/webp'},
+      png: {svg: 'image/svg+xml'}
+    })
+    .use(rehypeStringify)
+    .process('<img src="cat.jpg">\n<img src="logo.png">')
+
+  console.log(String(file))
+}
 ```
 
 Yields:
 
 ```html
-no issues found
 <picture><source srcset="cat.webp" type="image/webp"><img src="cat.jpg"></picture>
 <picture><source srcset="logo.svg" type="image/svg+xml"><img src="logo.png"></picture>
 ```
@@ -59,29 +104,38 @@ The default export is `rehypePicture`.
 
 ### `unified().use(rehypePicture[, options])`
 
-Options is an object mapping extensions (without dot, `.`) to search for on
-`<img>` elements to “sources”.
-Sources are objects mapping replacement extensions (without dot, `.`) to mime
-types.
+Wrap images in pictures.
 
-So, if the following options are given:
+###### `options`
 
-```js
-{
-  jpg: {webp: 'image/webp'},
-  png: {svg: 'image/svg+xml'}
-}
-```
+Configuration that maps search extensions (without dot) to sources
+(`Record<string, Sources>?`).
 
-…that means `jpg` and `png` are the searched for extensions, which when found
-are wrapped in `<picture>` elements.
-The values at those keys are the `<source>` elements inserted in the picture.
+###### `Sources`
+
+Object mapping new extensions (without dot) to mime types.
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports `Options` and `Sources` types, which specify the interfaces of the
+accepted values.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This plugin works with `rehype-parse` version 3+, `rehype-stringify` version 3+,
+`rehype` version 4+, and `unified` version 6+.
 
 ## Security
 
-Although this plugin should be safe to use, always be careful with user input.
-For example, it’s possible to hide JavaScript inside images (such as GIFs,
-WebPs, and SVGs).
+Although this plugin should be safe to use, be careful with user input images
+as it’s often possible to hide JavaScript inside them (such as GIFs, WebPs, and
+SVGs).
 User provided images open you up to a [cross-site scripting (XSS)][xss] attack.
 
 ## Contribute
@@ -126,7 +180,11 @@ abide by its terms.
 
 [chat]: https://github.com/rehypejs/rehype/discussions
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
 [npm]: https://docs.npmjs.com/cli/install
+
+[skypack]: https://www.skypack.dev
 
 [health]: https://github.com/rehypejs/.github
 
@@ -139,6 +197,10 @@ abide by its terms.
 [license]: license
 
 [author]: https://wooorm.com
+
+[typescript]: https://www.typescriptlang.org
+
+[unified]: https://github.com/unifiedjs/unified
 
 [rehype]: https://github.com/rehypejs/rehype
 
