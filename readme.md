@@ -39,9 +39,9 @@ This is a rehype plugin that changes images in the tree.
 
 ## When should I use this?
 
-This plugin is useful when you have the same images in different formats.
-For example, when you have a build step that turns JPGs into WebPs, you can use
-this plugin to generate the markup for both.
+This plugin is useful when you have the same images in different file formats.
+For example, when you have a build step that turns `.jpg`s into `.webp`s, you
+can use this plugin to generate the markup for both.
 
 ## Install
 
