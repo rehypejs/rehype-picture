@@ -1,11 +1,17 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import {unified} from 'unified'
 import rehypeParse from 'rehype-parse'
 import rehypeStringify from 'rehype-stringify'
+import {unified} from 'unified'
 import rehypePicture from './index.js'
 
 test('rehypePicture', async function (t) {
+  await t.test('should expose the public api', async function () {
+    assert.deepEqual(Object.keys(await import('./index.js')).sort(), [
+      'default'
+    ])
+  })
+
   await t.test('should ignore non-matching images', async function () {
     const file = await unified()
       .use(rehypeParse, {fragment: true})
