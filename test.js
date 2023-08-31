@@ -35,7 +35,7 @@ test('rehypePicture', async function (t) {
   await t.test('should work without replacement map', async function () {
     const file = await unified()
       .use(rehypeParse, {fragment: true})
-      .use(rehypePicture, {jpg: {}})
+      .use(rehypePicture, {jpg: undefined})
       .use(rehypeStringify)
       .process('<img src="cat.jpg">')
 

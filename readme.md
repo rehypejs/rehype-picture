@@ -18,6 +18,8 @@
 *   [Use](#use)
 *   [API](#api)
     *   [`unified().use(rehypePicture[, options])`](#unifieduserehypepicture-options)
+    *   [`Options`](#options)
+    *   [`Sources`](#sources)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Security](#security)
@@ -48,7 +50,7 @@ the markup for both.
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+In Node.js (version 16+), install with [npm][]:
 
 ```sh
 npm install rehype-picture
@@ -71,25 +73,21 @@ In browsers with [`esm.sh`][esmsh]:
 ## Use
 
 ```js
-import {unified} from 'unified'
 import rehypeParse from 'rehype-parse'
 import rehypePicture from 'rehype-picture'
 import rehypeStringify from 'rehype-stringify'
+import {unified} from 'unified'
 
-main()
+const file = await unified()
+  .use(rehypeParse, {fragment: true})
+  .use(rehypePicture, {
+    jpg: {webp: 'image/webp'},
+    png: {svg: 'image/svg+xml'}
+  })
+  .use(rehypeStringify)
+  .process('<img src="cat.jpg">\n<img src="logo.png">')
 
-async function main() {
-  const file = await unified()
-    .use(rehypeParse, {fragment: true})
-    .use(rehypePicture, {
-      jpg: {webp: 'image/webp'},
-      png: {svg: 'image/svg+xml'}
-    })
-    .use(rehypeStringify)
-    .process('<img src="cat.jpg">\n<img src="logo.png">')
-
-  console.log(String(file))
-}
+console.log(String(file))
 ```
 
 Yields:
@@ -102,33 +100,60 @@ Yields:
 ## API
 
 This package exports no identifiers.
-The default export is `rehypePicture`.
+The default export is [`rehypePicture`][api-rehype-react].
 
 ### `unified().use(rehypePicture[, options])`
 
 Wrap images in pictures.
 
-###### `options`
+###### Parameters
 
-Configuration that maps search extensions (without dot) to sources
-(`Record<string, Sources>?`).
+*   `options` ([`Options`][api-options], optional)
+    — configuration
 
-###### `Sources`
+###### Returns
 
-Object mapping new extensions (without dot) to mime types.
+Transform ([`Transformer`][unified-transformer]).
+
+### `Options`
+
+Configuration (TypeScript type)
+
+Maps file extensions (without dot, so such as `jpg`) to sources.
+
+###### Type
+
+```ts
+type Options = Record<string, Sources | null | undefined>
+```
+
+### `Sources`
+
+Sources (TypeScript type)
+
+Maps file extensions (without dot, so such as `webp`) to mime types.
+
+###### Type
+
+```ts
+type Sources = Record<string, string | null | undefined>
+```
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-It exports `Options` and `Sources` types, which specify the interfaces of the
-accepted values.
+It exports the additional types [`Options`][api-options] and
+[`Sources`][api-sources].
 
 ## Compatibility
 
-Projects maintained by the unified collective are compatible with all maintained
+Projects maintained by the unified collective are compatible with maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
-Our projects sometimes work with older versions, but this is not guaranteed.
+
+When we cut a new major release, we drop support for unmaintained versions of
+Node.
+This means we try to keep the current release line, `rehype-picture@^4`,
+compatible with Node.js 12.
 
 This plugin works with `rehype-parse` version 3+, `rehype-stringify` version 3+,
 `rehype` version 4+, and `unified` version 6+.
@@ -168,9 +193,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/rehype-picture
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/rehype-picture.svg
+[size-badge]: https://img.shields.io/bundlejs/size/rehype-picture
 
-[size]: https://bundlephobia.com/result?p=rehype-picture
+[size]: https://bundlejs.com/?q=rehype-picture
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -190,20 +215,28 @@ abide by its terms.
 
 [health]: https://github.com/rehypejs/.github
 
-[contributing]: https://github.com/rehypejs/.github/blob/HEAD/contributing.md
+[contributing]: https://github.com/rehypejs/.github/blob/main/contributing.md
 
-[support]: https://github.com/rehypejs/.github/blob/HEAD/support.md
+[support]: https://github.com/rehypejs/.github/blob/main/support.md
 
-[coc]: https://github.com/rehypejs/.github/blob/HEAD/code-of-conduct.md
+[coc]: https://github.com/rehypejs/.github/blob/main/code-of-conduct.md
 
 [license]: license
 
 [author]: https://wooorm.com
 
-[typescript]: https://www.typescriptlang.org
+[rehype]: https://github.com/rehypejs/rehype
 
 [unified]: https://github.com/unifiedjs/unified
 
-[rehype]: https://github.com/rehypejs/rehype
+[unified-transformer]: https://github.com/unifiedjs/unified#transformer
+
+[typescript]: https://www.typescriptlang.org
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[api-rehype-react]: #unifieduserehypepicture-options
+
+[api-options]: #options
+
+[api-sources]: #sources
