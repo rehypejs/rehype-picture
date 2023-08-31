@@ -1,60 +1,51 @@
-import test from 'tape'
+import assert from 'node:assert/strict'
+import test from 'node:test'
 import {unified} from 'unified'
 import rehypeParse from 'rehype-parse'
 import rehypeStringify from 'rehype-stringify'
 import rehypePicture from './index.js'
 
-test('rehypePicture', (t) => {
-  unified()
-    .use(rehypeParse, {fragment: true})
-    .use(rehypePicture)
-    .use(rehypeStringify)
-    .process('<img src="cat.png">', (error, file) => {
-      t.deepEqual(
-        [error, String(file)],
-        [undefined, '<img src="cat.png">'],
-        'should ignore non-matching images'
-      )
-    })
+test('rehypePicture', async function (t) {
+  await t.test('should ignore non-matching images', async function () {
+    const file = await unified()
+      .use(rehypeParse, {fragment: true})
+      .use(rehypePicture)
+      .use(rehypeStringify)
+      .process('<img src="cat.png">')
 
-  unified()
-    .use(rehypeParse, {fragment: true})
-    .use(rehypePicture, {})
-    .use(rehypeStringify)
-    .process('<img>', (error, file) => {
-      t.deepEqual(
-        [error, String(file)],
-        [undefined, '<img>'],
-        'should ignore images without src'
-      )
-    })
+    assert.equal(String(file), '<img src="cat.png">')
+  })
 
-  unified()
-    .use(rehypeParse, {fragment: true})
-    .use(rehypePicture, {jpg: {}})
-    .use(rehypeStringify)
-    .process('<img src="cat.jpg">', (error, file) => {
-      t.deepEqual(
-        [error, String(file)],
-        [undefined, '<picture><img src="cat.jpg"></picture>'],
-        'should work without replacement map'
-      )
-    })
+  await t.test('should ignore images without src', async function () {
+    const file = await unified()
+      .use(rehypeParse, {fragment: true})
+      .use(rehypePicture, {})
+      .use(rehypeStringify)
+      .process('<img>')
 
-  unified()
-    .use(rehypeParse, {fragment: true})
-    .use(rehypePicture, {jpg: {webp: 'image/webp'}})
-    .use(rehypeStringify)
-    .process('<img src="cat.jpg">', (error, file) => {
-      t.deepEqual(
-        [error, String(file)],
-        [
-          undefined,
-          '<picture><source srcset="cat.webp" type="image/webp"><img src="cat.jpg"></picture>'
-        ],
-        'should add sources'
-      )
-    })
+    assert.equal(String(file), '<img>')
+  })
 
-  t.end()
+  await t.test('should work without replacement map', async function () {
+    const file = await unified()
+      .use(rehypeParse, {fragment: true})
+      .use(rehypePicture, {jpg: {}})
+      .use(rehypeStringify)
+      .process('<img src="cat.jpg">')
+
+    assert.equal(String(file), '<picture><img src="cat.jpg"></picture>')
+  })
+
+  await t.test('should add sources', async function () {
+    const file = await unified()
+      .use(rehypeParse, {fragment: true})
+      .use(rehypePicture, {jpg: {webp: 'image/webp'}})
+      .use(rehypeStringify)
+      .process('<img src="cat.jpg">')
+
+    assert.equal(
+      String(file),
+      '<picture><source srcset="cat.webp" type="image/webp"><img src="cat.jpg"></picture>'
+    )
+  })
 })
