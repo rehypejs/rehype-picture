@@ -12,7 +12,7 @@ test('rehypePicture', (t) => {
     .process('<img src="cat.png">', (error, file) => {
       t.deepEqual(
         [error, String(file)],
-        [null, '<img src="cat.png">'],
+        [undefined, '<img src="cat.png">'],
         'should ignore non-matching images'
       )
     })
@@ -24,7 +24,7 @@ test('rehypePicture', (t) => {
     .process('<img>', (error, file) => {
       t.deepEqual(
         [error, String(file)],
-        [null, '<img>'],
+        [undefined, '<img>'],
         'should ignore images without src'
       )
     })
@@ -36,7 +36,7 @@ test('rehypePicture', (t) => {
     .process('<img src="cat.jpg">', (error, file) => {
       t.deepEqual(
         [error, String(file)],
-        [null, '<picture><img src="cat.jpg"></picture>'],
+        [undefined, '<picture><img src="cat.jpg"></picture>'],
         'should work without replacement map'
       )
     })
@@ -49,7 +49,7 @@ test('rehypePicture', (t) => {
       t.deepEqual(
         [error, String(file)],
         [
-          null,
+          undefined,
           '<picture><source srcset="cat.webp" type="image/webp"><img src="cat.jpg"></picture>'
         ],
         'should add sources'
