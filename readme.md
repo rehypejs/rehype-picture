@@ -59,14 +59,14 @@ npm install rehype-picture
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import rehypePicture from 'https://esm.sh/rehype-picture@4'
+import rehypePicture from 'https://esm.sh/rehype-picture@5'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import rehypePicture from 'https://esm.sh/rehype-picture@4?bundle'
+  import rehypePicture from 'https://esm.sh/rehype-picture@5?bundle'
 </script>
 ```
 
