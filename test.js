@@ -54,4 +54,43 @@ test('rehypePicture', async function (t) {
       '<picture><source srcset="cat.webp" type="image/webp"><img src="cat.jpg"></picture>'
     )
   })
+
+  await t.test('should set width and height if available', async function () {
+    const file = await unified()
+      .use(rehypeParse, {fragment: true})
+      .use(rehypePicture, {jpg: {webp: 'image/webp'}})
+      .use(rehypeStringify)
+      .process('<img src="cat.jpg" width="400" height="200">')
+
+    assert.equal(
+      String(file),
+      '<picture><source srcset="cat.webp" type="image/webp" width="400" height="200"><img src="cat.jpg" width="400" height="200"></picture>'
+    )
+  })
+
+  await t.test('should set width if available', async function () {
+    const file = await unified()
+      .use(rehypeParse, {fragment: true})
+      .use(rehypePicture, {jpg: {webp: 'image/webp'}})
+      .use(rehypeStringify)
+      .process('<img src="cat.jpg" width="400">')
+
+    assert.equal(
+      String(file),
+      '<picture><source srcset="cat.webp" type="image/webp" width="400"><img src="cat.jpg" width="400"></picture>'
+    )
+  })
+
+  await t.test('should set height if available', async function () {
+    const file = await unified()
+      .use(rehypeParse, {fragment: true})
+      .use(rehypePicture, {jpg: {webp: 'image/webp'}})
+      .use(rehypeStringify)
+      .process('<img src="cat.jpg" height="200">')
+
+    assert.equal(
+      String(file),
+      '<picture><source srcset="cat.webp" type="image/webp" height="200"><img src="cat.jpg" height="200"></picture>'
+    )
+  })
 })
